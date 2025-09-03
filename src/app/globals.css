@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+/* Design tokens */
+:root {
+  /* Base */
+  --background: #0a0a0f;
+  --foreground: #e7e7ee;
+  --muted: #9aa0b3;
+
+  /* Worlds */
+  --hub-bg: #1a0f2e; /* deep purple */
+  --hub-accent: #c8a640; /* gold */
+  --projects-bg: #0c1424; /* blue */
+  --projects-accent: #2f6ae3; /* blue-gold mix */
+  --experience-bg: #0f120c; /* earth */
+  --experience-accent: #63a46c; /* growth green */
+  --interests-bg: #0e140c; /* warm green */
+  --interests-accent: #b07a3a; /* wood/brown */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+
+  --color-hub: var(--hub-bg);
+  --color-hub-accent: var(--hub-accent);
+  --color-projects: var(--projects-bg);
+  --color-projects-accent: var(--projects-accent);
+  --color-experience: var(--experience-bg);
+  --color-experience-accent: var(--experience-accent);
+  --color-interests: var(--interests-bg);
+  --color-interests-accent: var(--interests-accent);
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #060609;
+    --foreground: #f0f0f6;
+  }
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: radial-gradient(1200px 800px at 50% -10%, color(display-p3 0.18 0.12 0.26) 0%, var(--background) 60%);
+  color: var(--foreground);
+}
+
+/* Subtle particles placeholder */
+.ambient-dots {
+  background-image: radial-gradient(circle at 1px 1px, color-mix(in oklab, var(--foreground) 12%, transparent) 1px, transparent 1px);
+  background-size: 24px 24px;
+  mask-image: radial-gradient(400px 400px at 50% 0%, #000 0%, transparent 70%);
+  opacity: 0.25;
+}
+
+/* Utilities */
+.card {
+  @apply rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5)];
+}
+
+.hud {
+  @apply sticky top-0 z-40 w-full border-b border-white/10 bg-[color-mix(in_oklab,var(--background)_80%,black_20%)]/70 backdrop-blur-md;
+}
+
+.nav-link {
+  @apply text-sm font-medium text-white/80 hover:text-white transition-colors;
+}
