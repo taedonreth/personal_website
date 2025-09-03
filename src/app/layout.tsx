@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import { Trophy, Swords, Shield, Newspaper } from "lucide-react";
+import SoundProvider from "@/providers/SoundProvider";
+import AudioToggle from "@/components/AudioToggle";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,6 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <SoundProvider>
         <header className="hud">
           <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between gap-4">
             <div className="flex items-center gap-6 text-sm">
@@ -46,7 +49,9 @@ export default function RootLayout({
         <div className="relative">
           <div className="ambient-dots pointer-events-none absolute inset-0" />
           <main className="relative">{children}</main>
+          <AudioToggle />
         </div>
+        </SoundProvider>
       </body>
     </html>
   );

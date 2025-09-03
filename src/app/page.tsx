@@ -2,8 +2,10 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useSound } from "@/providers/SoundProvider";
 
 export default function Home() {
+  const { play } = useSound();
   return (
     <div className="min-h-screen overflow-hidden">
       <section className="relative mx-auto max-w-6xl px-6 pt-16 pb-24">
@@ -27,6 +29,8 @@ export default function Home() {
               <motion.a
                 key={p.href}
                 href={p.href}
+                onMouseEnter={() => play("hover")}
+                onClick={() => play("click")}
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
                 className="group relative card p-5 bg-white/5"

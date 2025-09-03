@@ -3,19 +3,19 @@
 /* Design tokens */
 :root {
   /* Base */
-  --background: #0a0a0f;
-  --foreground: #e7e7ee;
-  --muted: #9aa0b3;
+  --background: #0c0a09; /* warmer dark */
+  --foreground: #f3efe9; /* warm light */
+  --muted: #b9b1a7; /* warm muted */
 
   /* Worlds */
-  --hub-bg: #1a0f2e; /* deep purple */
-  --hub-accent: #c8a640; /* gold */
-  --projects-bg: #0c1424; /* blue */
-  --projects-accent: #2f6ae3; /* blue-gold mix */
-  --experience-bg: #0f120c; /* earth */
-  --experience-accent: #63a46c; /* growth green */
-  --interests-bg: #0e140c; /* warm green */
-  --interests-accent: #b07a3a; /* wood/brown */
+  --hub-bg: #1b1320; /* warmer purple */
+  --hub-accent: #d4b253; /* softer gold */
+  --projects-bg: #0d1720; /* indigo-teal */
+  --projects-accent: #3b82f6; /* friendly blue */
+  --experience-bg: #121008; /* earthen */
+  --experience-accent: #7acb73; /* grass green */
+  --interests-bg: #12140c; /* forest */
+  --interests-accent: #c08a4a; /* wood */
 }
 
 @theme inline {
@@ -48,7 +48,11 @@ html, body {
 }
 
 body {
-  background: radial-gradient(1200px 800px at 50% -10%, color(display-p3 0.18 0.12 0.26) 0%, var(--background) 60%);
+  /* Warm vignette + subtle noise */
+  background:
+    radial-gradient(1200px 800px at 50% -10%, color(display-p3 0.22 0.16 0.12) 0%, transparent 55%),
+    radial-gradient(1400px 900px at 50% 120%, color(display-p3 0.24 0.18 0.12 / 0.6) 0%, transparent 60%),
+    linear-gradient(var(--background), var(--background));
   color: var(--foreground);
 }
 
@@ -62,7 +66,8 @@ body {
 
 /* Utilities */
 .card {
-  @apply rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5)];
+  @apply rounded-3xl border border-white/15 bg-white/5 backdrop-blur-sm shadow-[0_10px_30px_-10px_rgba(0,0,0,0.55)];
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06), 0 10px 30px -10px rgba(0,0,0,0.55);
 }
 
 .hud {
@@ -71,4 +76,36 @@ body {
 
 .nav-link {
   @apply text-sm font-medium text-white/80 hover:text-white transition-colors;
+}
+
+/* Minecraft subtle pixel background helper */
+.bg-pixel {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 16px 16px, 16px 16px;
+}
+
+/* Minecraft blocky terrain (grass top + dirt grid) */
+.bg-mc {
+  background-image:
+    /* grass top strip */
+    linear-gradient(#5fbf4a 0, #5fbf4a 8px, transparent 8px),
+    /* vertical dirt grid */
+    linear-gradient(90deg, rgba(0,0,0,0.08) 1px, transparent 1px),
+    /* horizontal dirt grid */
+    linear-gradient(rgba(0,0,0,0.08) 1px, transparent 1px),
+    /* dirt base */
+    linear-gradient(#6a5136, #6a5136);
+  background-size:
+    100% 16px,
+    16px 16px,
+    16px 16px,
+    100% calc(100% - 8px);
+  background-position:
+    top left,
+    left 8px top 8px,
+    left 8px top 8px,
+    left 8px top 8px;
+  border-radius: 1.25rem;
 }
