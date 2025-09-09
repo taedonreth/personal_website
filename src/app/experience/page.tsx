@@ -1,28 +1,48 @@
-import PixelDivider from "@/components/PixelDivider";
-import { Shield } from "lucide-react";
+"use client";
+
+import { motion } from "framer-motion";
 
 export default function ExperiencePage() {
+  const achievements = [
+    { icon: "🏆", title: "AMD INTERNSHIP COMPLETE", description: "Master of Infrastructure Optimization", rarity: "[RARE]" },
+    { icon: "⚡", title: "TESLA DATA PLATFORM HERO", description: "Shipped optimization across platforms", rarity: "[EPIC]" },
+    { icon: "🧬", title: "GENENTECH BACKEND MASTER", description: "Built robust backend systems", rarity: "[LEGENDARY]" },
+    { icon: "🎓", title: "UCSB CS DEGREE", description: "Academic Excellence Achievement", rarity: "[IN PROGRESS]" },
+  ];
+
   return (
-    <div className="mx-auto max-w-6xl px-6 py-12 bg-mc">
-      <h1 className="text-2xl font-semibold mb-2 flex items-center gap-2"><Shield size={18}/> Experience</h1>
-      <PixelDivider />
-      <div className="space-y-4">
-        {[
-          { role: "Engineer I", mat: "Wood", years: 1 },
-          { role: "Engineer II", mat: "Iron", years: 2 },
-          { role: "Senior Engineer", mat: "Diamond", years: 3 },
-        ].map((r, idx) => (
-          <div key={idx} className="card p-5 bg-gradient-to-r from-experience/10 to-transparent rounded-xl ring-1 ring-white/10">
-            <div className="text-white">{r.role}</div>
-            <div className="text-white/70 text-sm">Material tier: {r.mat}</div>
-            <div className="mt-2 flex items-center gap-1">
-              {Array.from({ length: r.years }).map((_, i) => (
-                <span key={i} aria-label="heart" title="Tenure" className="text-red-400">❤</span>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
+    <div className="mx-auto max-w-6xl px-6 py-12">
+      <section className="minecraft-panel">
+        <div className="minecraft-panel-title">ACHIEVEMENTS UNLOCKED</div>
+        <div className="space-y-4">
+          {achievements.map((achievement, index) => (
+            <motion.div
+              key={achievement.title}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
+              className="minecraft-achievement"
+            >
+              <div className="flex items-center gap-3 mb-2">
+                <span className="text-2xl">{achievement.icon}</span>
+                <div>
+                  <div className="minecraft-achievement-title">{achievement.title}</div>
+                  <div className="minecraft-achievement-rarity">{achievement.rarity}</div>
+                </div>
+              </div>
+              <div className="minecraft-achievement-description">"{achievement.description}"</div>
+              {achievement.title === "UCSB CS DEGREE" && (
+                <div className="mt-2">
+                  <div className="minecraft-text text-sm mb-1">Progress: ████████░░ 75% Complete</div>
+                  <div className="minecraft-progress">
+                    <div className="minecraft-progress-fill" style={{ width: '75%' }} />
+                  </div>
+                </div>
+              )}
+            </motion.div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

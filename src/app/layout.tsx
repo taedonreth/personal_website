@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { VT323, Orbitron } from "next/font/google";
+import { Press_Start_2P, Orbitron } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import { Home, Swords, Shield, Target, Scroll } from "lucide-react";
 import SoundProvider from "@/providers/SoundProvider";
 import AudioToggle from "@/components/AudioToggle";
 
-const vt323 = VT323({
-  variable: "--font-vt323",
+const pressStart = Press_Start_2P({
+  variable: "--font-minecraft",
   subsets: ["latin"],
   weight: "400",
 });
@@ -30,31 +30,44 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${vt323.variable} ${orbitron.variable} antialiased`}>
+      <body className={`${pressStart.variable} ${orbitron.variable} antialiased`}>
         <SoundProvider>
         <header className="hud">
-          <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between gap-4">
-            <div className="flex items-center gap-6 text-sm font-body">
-              <div className="flex items-center gap-2">
-                <span className="text-text-primary/90">LV.</span>
-                <span className="text-rpg-accent text-lg font-bold">26</span>
-                <div className="w-16 h-2 bg-gray-700 rounded-full ml-2">
-                  <div className="h-full bg-gradient-to-r from-accent-primary to-accent-secondary rounded-full" style={{width: '85%'}}></div>
+          <div className="w-full px-2 sm:px-4 py-3 flex items-center justify-between gap-4">
+            <div className="flex items-center gap-4 text-xs flex-1">
+              <div className="flex items-center gap-1 minecraft-text whitespace-nowrap">
+                <span>LV</span>
+                <span className="text-base font-bold text-yellow-400 leading-none">26</span>
+                <div className="w-24 h-1.5 bg-gray-700 ml-1" style={{border: '1px solid #8B8B8B'}}>
+                  <div className="h-full bg-green-500" style={{width: '85%'}} />
                 </div>
               </div>
-              <span className="text-text-primary/80">Quest: <strong className="text-rpg-accent">Building Scalable Systems</strong></span>
-              <span className="text-text-primary/80">Guild: <strong className="text-rpg-highlight">UCSB</strong></span>
+              <span className="minecraft-text whitespace-nowrap max-w-[36ch] overflow-hidden text-ellipsis">Quest: <strong className="text-yellow-400">Machine Learning</strong></span>
+              <span className="minecraft-text whitespace-nowrap">Guild: <strong className="text-yellow-400">UCSB</strong></span>
             </div>
-            <nav className="flex items-center gap-5">
-              <Link href="/" className="nav-link flex items-center gap-2 hover:text-rpg-accent transition-colors"><Home size={16}/> Hub</Link>
-              <Link href="/projects" className="nav-link flex items-center gap-2 hover:text-rpg-accent transition-colors"><Swords size={16}/> Projects</Link>
-              <Link href="/experience" className="nav-link flex items-center gap-2 hover:text-rpg-accent transition-colors"><Shield size={16}/> Experience</Link>
-              <Link href="/interests" className="nav-link flex items-center gap-2 hover:text-rpg-accent transition-colors"><Target size={16}/> Interests</Link>
-              <Link href="/newsletter" className="nav-link flex items-center gap-2 hover:text-rpg-accent transition-colors"><Scroll size={16}/> Newsletter</Link>
+            <nav className="flex items-center gap-4">
+              <Link href="/" className="nav-link hover:text-yellow-400 transition-colors"><Home size={12}/> Hub</Link>
+              <Link href="/experience" className="nav-link hover:text-yellow-400 transition-colors"><Shield size={12}/> Experience</Link>
+              <Link href="/projects" className="nav-link hover:text-yellow-400 transition-colors"><Swords size={12}/> Projects</Link>
+              <Link href="/interests" className="nav-link hover:text-yellow-400 transition-colors"><Target size={12}/> Interests</Link>
+              <Link href="/newsletter" className="nav-link hover:text-yellow-400 transition-colors"><Scroll size={12}/> Newsletter</Link>
             </nav>
           </div>
         </header>
         <div className="relative">
+          {/* Pixel night sky background (global for all pages) */}
+          <div aria-hidden className="pixel-night-sky">
+            <div className="sky-base" />
+            <div className="stars stars-1" />
+            <div className="stars stars-2" />
+            <div className="stars stars-3" />
+            <div className="cloud c1" />
+            <div className="cloud c2" />
+            <div className="cloud c3" />
+            <div className="cloud c4" />
+            <div className="cloud c5" />
+            <div className="cloud c6" />
+          </div>
           <div className="ambient-dots pointer-events-none absolute inset-0" />
           <main className="relative">{children}</main>
           <AudioToggle />

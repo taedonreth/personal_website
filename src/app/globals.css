@@ -1,34 +1,36 @@
 @import "tailwindcss";
 
-/* RPG Character Sheet Design Tokens */
+/* Minecraft Main Menu Design Tokens */
 :root {
-  /* Base Colors */
-  --background: #0f1419; /* rich dark forest */
-  --background-alt: #1a1a1a; /* deep charcoal gray */
-  --foreground: #ffffff; /* pure white */
-  --muted: #e0e0e0; /* light gray */
-
-  /* RPG Theme Colors */
-  --accent-primary: #32cd32; /* electric lime green */
-  --accent-secondary: #00ff7f; /* vibrant emerald */
-  --highlight: #ffd700; /* golden yellow */
-  --border: #1f4f1f; /* darker green for borders */
-  --border-glow: rgba(50, 205, 50, 0.3); /* glowing border effect */
+  /* Minecraft GUI Colors */
+  --mc-background: #373737; /* dark gray like Minecraft GUI */
+  --mc-border: #8B8B8B; /* medium gray for borders */
+  --mc-button: #555555; /* button base color */
+  --mc-button-light: #8B8B8B; /* button highlight */
+  --mc-button-hover: #A0A0A0; /* button hover */
+  --mc-text: #FFFFFF; /* white text */
+  --mc-text-shadow: #000000; /* black text shadow */
+  --mc-accent: #FFD700; /* gold for special elements */
+  --mc-progress: #00FF00; /* bright green for progress bars */
+  --mc-link: #5555FF; /* Minecraft blue */
   
-  /* Text Colors */
-  --text-primary: #ffffff;
-  --text-secondary: #32cd32;
-  --text-accent: #ffd700;
-  --text-muted: #e0e0e0;
-  --text-glow: rgba(50, 205, 50, 0.8);
+  /* Background Colors */
+  --background: #87CEEB; /* sky blue like Minecraft sky */
+  --background-alt: #8FBC8F; /* forest green */
+  --foreground: #FFFFFF;
+  --muted: #C0C0C0;
 
-  /* Character Sheet Colors */
-  --stat-bg: #1a1a1a;
-  --stat-border: #32cd32;
-  --achievement-bg: linear-gradient(45deg, #1a1a1a, #2a2a2a);
-  --achievement-border: #ffd700;
-  --progress-bg: #333333;
-  --progress-fill: linear-gradient(90deg, #32cd32, #00ff7f);
+  /* Text Colors */
+  --text-primary: #FFFFFF;
+  --text-secondary: #FFD700;
+  --text-accent: #5555FF;
+  --text-muted: #C0C0C0;
+
+  /* Minecraft Panel Colors */
+  --panel-bg: #373737;
+  --panel-border: #8B8B8B;
+  --panel-border-light: #FFFFFF;
+  --panel-border-dark: #000000;
 
   /* Worlds (keeping for other pages) */
   --projects-bg: #0d1720;
@@ -44,24 +46,26 @@
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
 
-  --color-accent-primary: var(--accent-primary);
-  --color-accent-secondary: var(--accent-secondary);
-  --color-highlight: var(--highlight);
-  --color-border: var(--border);
-  --color-border-glow: var(--border-glow);
+  --color-mc-background: var(--mc-background);
+  --color-mc-border: var(--mc-border);
+  --color-mc-button: var(--mc-button);
+  --color-mc-button-light: var(--mc-button-light);
+  --color-mc-button-hover: var(--mc-button-hover);
+  --color-mc-text: var(--mc-text);
+  --color-mc-text-shadow: var(--mc-text-shadow);
+  --color-mc-accent: var(--mc-accent);
+  --color-mc-progress: var(--mc-progress);
+  --color-mc-link: var(--mc-link);
   
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
   --color-text-accent: var(--text-accent);
   --color-text-muted: var(--text-muted);
-  --color-text-glow: var(--text-glow);
 
-  --color-stat-bg: var(--stat-bg);
-  --color-stat-border: var(--stat-border);
-  --color-achievement-bg: var(--achievement-bg);
-  --color-achievement-border: var(--achievement-border);
-  --color-progress-bg: var(--progress-bg);
-  --color-progress-fill: var(--progress-fill);
+  --color-panel-bg: var(--panel-bg);
+  --color-panel-border: var(--panel-border);
+  --color-panel-border-light: var(--panel-border-light);
+  --color-panel-border-dark: var(--panel-border-dark);
 
   --color-projects: var(--projects-bg);
   --color-projects-accent: var(--projects-accent);
@@ -70,7 +74,7 @@
   --color-interests: var(--interests-bg);
   --color-interests-accent: var(--interests-accent);
 
-  --font-heading: var(--font-vt323);
+  --font-minecraft: var(--font-minecraft);
   --font-body: var(--font-orbitron);
 }
 
@@ -86,23 +90,20 @@ html, body {
 }
 
 body {
-  /* RPG Character Sheet Background */
-  background:
-    radial-gradient(1200px 800px at 50% -10%, rgba(50, 205, 50, 0.1) 0%, transparent 55%),
-    radial-gradient(1400px 900px at 50% 120%, rgba(255, 215, 0, 0.08) 0%, transparent 60%),
-    radial-gradient(800px 600px at 20% 80%, rgba(0, 255, 127, 0.05) 0%, transparent 50%),
-    linear-gradient(135deg, #0f1419 0%, #1a1a1a 50%, #0f1419 100%);
+  /* Minecraft Background - simple sky gradient */
+  background: var(--sky-bg, linear-gradient(135deg, #87CEEB 0%, #98E4FF 100%));
   color: var(--foreground);
-  font-family: var(--font-orbitron), sans-serif;
+  font-family: var(--font-minecraft), 'Courier New', monospace;
   min-height: 100vh;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
 }
 
 /* Subtle particles placeholder */
 .ambient-dots {
-  background-image: radial-gradient(circle at 1px 1px, color-mix(in oklab, var(--foreground) 12%, transparent) 1px, transparent 1px);
-  background-size: 24px 24px;
-  mask-image: radial-gradient(400px 400px at 50% 0%, #000 0%, transparent 70%);
-  opacity: 0.25;
+  /* Removed for clean Minecraft background */
+  display: none;
 }
 
 /* Utilities */
@@ -115,20 +116,27 @@ body {
   position: sticky;
   top: 0;
   z-index: 40;
-  width: 100%;
-  border-bottom: 2px solid rgba(50, 205, 50, 0.4);
-  background: linear-gradient(135deg, 
-    rgba(15, 20, 25, 0.95) 0%, 
-    rgba(26, 26, 26, 0.9) 100%);
-  backdrop-filter: blur(20px);
-  box-shadow: 
-    0 0 30px rgba(50, 205, 50, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  width: 100vw; /* ensure full viewport width so no unused left gutter */
+  border-bottom: 1px solid #8B8B8B;
+  background: #373737;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  font-size: 12px;
 }
 
 .nav-link {
-  @apply text-sm font-medium text-text-primary/80 hover:text-text-primary transition-colors;
-  font-family: var(--font-body);
+  color: #FFFFFF;
+  text-shadow: 1px 1px 0px #000000;
+  font-family: var(--font-minecraft), 'Courier New', monospace;
+  font-size: 12px;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  overflow-wrap: normal;
+  word-break: normal;
+  line-height: 1.2;
 }
 
 /* Minecraft subtle pixel background helper */
@@ -139,63 +147,295 @@ body {
   background-size: 16px 16px, 16px 16px;
 }
 
-/* RPG Character Sheet Typography */
-.character-name {
-  font-family: var(--font-vt323), monospace;
-  font-size: 3.5rem;
-  font-weight: 400;
-  text-shadow: 
-    3px 3px 0px #32cd32,
-    6px 6px 0px rgba(50, 205, 50, 0.4),
-    0 0 20px rgba(50, 205, 50, 0.6);
-  background: linear-gradient(45deg, #ffffff, #32cd32);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  letter-spacing: 3px;
-  text-transform: uppercase;
+/* Pixel Sky Layers */
+.pixel-night-sky {
+  position: fixed;
+  inset: 0;
+  z-index: 0; /* above body background, below page content */
+  pointer-events: none;
+  overflow: hidden;
 }
 
-.section-header {
-  font-family: var(--font-vt323), monospace;
-  font-size: 2rem;
-  font-weight: 400;
-  color: #ffd700;
-  text-transform: uppercase;
+.sky-base {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #0a0d1a 0%, #0a1326 55%, #0a1a33 100%);
+}
+
+/* stars */
+.stars { position: absolute; inset: 0; animation: twinkle 7s ease-in-out infinite; will-change: opacity, transform; }
+.stars-1 { background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 120px 120px; background-position: 0 0; animation-delay: 0s; opacity: .85; }
+.stars-2 { background-image: radial-gradient(#cfe6ff 1.2px, transparent 1.2px); background-size: 160px 160px; background-position: 30px 50px; animation-delay: 1.2s; opacity: .7; }
+.stars-3 { background-image: radial-gradient(#eaf2ff 1px, transparent 1px); background-size: 200px 200px; background-position: 80px 20px; animation-delay: 2.4s; opacity: .55; }
+@keyframes twinkle { 0%{opacity:.35;transform:translateY(0)}50%{opacity:.9;transform:translateY(-1px)}100%{opacity:1;transform:translateY(0)} }
+
+/* fluffy clouds with box-shadow lobes */
+:root { --cloud-color: rgba(255,255,255,0.95); --cloud-soft: rgba(255,255,255,0.9); }
+.cloud {
+  position: absolute; left: -30vw; width: 56px; height: 28px; top: 18vh;
+  background: var(--cloud-color); border-radius: 24px; filter: drop-shadow(0 2px 0 rgba(0,0,0,.04));
+  animation: cloud-drift 80s linear infinite; will-change: transform; opacity: .9;
+  box-shadow: 24px -6px 0 12px var(--cloud-soft), -18px -4px 0 10px var(--cloud-soft), 12px 4px 0 10px var(--cloud-soft), -10px 6px 0 8px var(--cloud-soft), 36px 6px 0 10px var(--cloud-soft);
+}
+.cloud::before, .cloud::after { content: ""; position: absolute; background: var(--cloud-soft); border-radius: 50%; }
+.cloud::before { width: 30px; height: 30px; left: -14px; top: -6px; box-shadow: 18px 4px 0 6px var(--cloud-soft), 42px -2px 0 8px var(--cloud-soft); }
+.cloud::after { width: 24px; height: 24px; left: 28px; top: -10px; box-shadow: 16px 6px 0 6px var(--cloud-soft), -22px 8px 0 6px var(--cloud-soft); }
+.c1 { top: 22vh; transform: scale(1.3); animation-duration: 65s; opacity: .95; }
+.c2 { top: 12vh; transform: scale(.95); animation-duration: 90s; opacity: .7; }
+.c3 { top: 30vh; transform: scale(1.15); animation-duration: 75s; opacity: .85; }
+/* Additional clouds for denser sky */
+.c4 { top: 8vh;  transform: scale(.85);  animation-duration: 105s; opacity: .6; }
+.c5 { top: 26vh; transform: scale(1.25); animation-duration: 70s;  opacity: .9; }
+.c6 { top: 36vh; transform: scale(1.05) scaleX(-1); animation-duration: 88s; opacity: .8; }
+@keyframes cloud-drift { 0%{transform:translateX(-30vw) scale(1)} 100%{transform:translateX(130vw) scale(1)} }
+
+/* Night Mode */
+@media (prefers-color-scheme: dark) {
+  :root { --sky-bg: linear-gradient(180deg, #0a0d1a 0%, #0a1326 60%, #0a1a33 100%); }
+
+  .sky-gradient {
+    background: linear-gradient(180deg, #0a0d1a 0%, #0a1326 60%, #0a1a33 100%);
+  }
+
+  /* stars remain visible in night mode via layers above */
+}
+
+/* Minecraft Typography */
+.minecraft-title {
+  text-align: center;
+}
+
+.minecraft-header {
+  text-align: center;
+  padding: 40px 0;
+  background: none;
+}
+
+.minecraft-title h1 {
+  font-family: var(--font-minecraft), 'Press Start 2P', monospace;
+  font-size: clamp(36px, 6vw, 72px);
+  font-weight: 700;
   letter-spacing: 2px;
-  border-bottom: 2px solid #32cd32;
-  padding-bottom: 0.5rem;
-  text-shadow: 
-    2px 2px 0px #32cd32,
-    0 0 15px rgba(50, 205, 50, 0.5);
+  margin: 0;
+  line-height: 1.05;
+  color: #AAAAAA;
+  text-shadow:
+    0 0 0 #000, /* force anti-alias outline */
+    2px 2px 0 #000,
+    -2px 2px 0 #000,
+    2px -2px 0 #000,
+    -2px -2px 0 #000,
+    4px 4px 0 rgba(0,0,0,0.9),
+    6px 6px 0 rgba(0,0,0,0.7),
+    8px 8px 0 rgba(0,0,0,0.5);
 }
 
-.character-class {
-  font-family: var(--font-orbitron), sans-serif;
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #32cd32;
-  text-shadow: 0 0 10px rgba(50, 205, 50, 0.8);
-  letter-spacing: 1px;
-}
-
-.text-rpg-body {
-  font-family: var(--font-orbitron), sans-serif;
-  font-weight: 400;
-  color: #ffffff;
-  line-height: 1.6;
-}
-
-.text-rpg-accent {
-  color: #32cd32;
-  text-shadow: 0 0 15px rgba(50, 205, 50, 0.8);
-  font-weight: 600;
-}
-
-.text-rpg-highlight {
+.minecraft-title .subtitle {
+  display: inline-block;
+  font-family: var(--font-minecraft), 'Press Start 2P', monospace;
+  font-size: clamp(24px, 2.4vw, 20px);
   color: #ffd700;
-  text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
-  font-weight: 600;
+  margin: 12px 0 0 0;
+  transform: rotate(-6deg) translate(40%, -10%);
+  padding: 6px 10px;
+  text-shadow:
+    2px 2px 0 #000,
+    -2px 2px 0 #000,
+    2px -2px 0 #000,
+    -2px -2px 0 #000,
+    4px 4px 0 rgba(0,0,0,0.7);
+}
+
+.minecraft-text {
+  font-family: var(--font-minecraft), 'Courier New', monospace;
+  color: #FFFFFF;
+  text-shadow: 1px 1px 0px #000000;
+  line-height: 1.4;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.minecraft-panel-title {
+  font-family: var(--font-minecraft), 'Courier New', monospace;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #FFFFFF;
+  text-shadow: 2px 2px 0px #000000;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Minecraft Button Styling */
+.minecraft-button {
+  background: linear-gradient(to bottom, #8B8B8B 0%, #555555 100%);
+  border: 2px solid;
+  border-color: #FFFFFF #000000 #000000 #FFFFFF;
+  color: #FFFFFF;
+  font-family: var(--font-minecraft), 'Courier New', monospace;
+  font-size: 14px;
+  padding: 10px 18px;
+  text-align: center;
+  width: min(400px, 90vw);
+  margin: 8px auto;
+  cursor: pointer;
+  display: block;
+  text-shadow: 2px 2px 0px #000000;
+  position: relative;
+  transition: all 0.1s ease;
+  text-decoration: none;
+}
+
+.minecraft-button:hover {
+  background: linear-gradient(to bottom, #A0A0A0 0%, #666666 100%);
+  transform: translateY(-1px);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.2);
+}
+
+.minecraft-button:active {
+  background: linear-gradient(to bottom, #707070 0%, #404040 100%);
+  transform: translateY(2px);
+}
+
+/* New: Main menu layout and exact Minecraft buttons */
+.minecraft-main-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: 50px auto;
+  width: min(400px, 90vw);
+}
+
+.minecraft-menu-btn {
+  width: min(550px, 275vw);
+  height: 42px;
+  background: linear-gradient(to bottom, #A0A0A0 0%, #808080 5%, #606060 95%, #404040 100%);
+  border: 2px solid;
+  border-color: #FFFFFF #555555 #555555 #FFFFFF;
+  color: #FFFFFF;
+  font-family: var(--font-minecraft), 'Courier New', monospace;
+  font-size: 16px;
+  text-shadow: 2px 2px 0px #000000;
+  cursor: pointer;
+  position: relative;
+  transition: none;
+}
+
+.minecraft-menu-btn:hover {
+  background: linear-gradient(to bottom, #B0B0B0 0%, #909090 5%, #707070 95%, #505050 100%);
+  border-color: #FFFFFF #666666 #666666 #FFFFFF;
+}
+
+.minecraft-menu-btn:active {
+  background: linear-gradient(to bottom, #606060 0%, #505050 5%, #404040 95%, #202020 100%);
+  border-color: #555555 #FFFFFF #FFFFFF #555555;
+  transform: translateY(1px);
+}
+
+.minecraft-menu-row {
+  display: flex;
+  gap: 6px;
+  width: min(550px, 275vw);
+}
+
+.minecraft-menu-btn.small {
+  width: calc(min(550px, 275vw) / 2 - 2px);
+}
+
+/* Minecraft Panel Styling */
+.minecraft-panel {
+  background: #373737;
+  border: 2px solid #8B8B8B;
+  border-style: solid;
+  border-color: #FFFFFF #000000 #000000 #FFFFFF;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 600px;
+  position: relative;
+}
+
+.minecraft-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 1px solid #8B8B8B;
+  pointer-events: none;
+}
+
+/* Minecraft Progress Bar */
+.minecraft-progress {
+  background: #555555;
+  border: 2px solid;
+  border-color: #000000 #FFFFFF #FFFFFF #000000;
+  height: 20px;
+  position: relative;
+  margin: 8px 0;
+}
+
+.minecraft-progress-fill {
+  background: #00FF00;
+  height: 100%;
+  position: relative;
+  transition: width 2s ease;
+}
+
+.minecraft-progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    transparent 2px,
+    rgba(255,255,255,0.1) 2px,
+    rgba(255,255,255,0.1) 4px
+  );
+}
+
+/* Minecraft Achievement Badge */
+.minecraft-achievement {
+  background: #373737;
+  border: 2px solid;
+  border-color: #FFD700 #8B4513 #8B4513 #FFD700;
+  padding: 16px;
+  margin: 12px 0;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.minecraft-achievement:hover {
+  background: #404040;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.minecraft-achievement-title {
+  color: #FFD700;
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-shadow: 1px 1px 0px #000000;
+  margin-bottom: 8px;
+}
+
+.minecraft-achievement-description {
+  color: #FFFFFF;
+  font-size: 0.9rem;
+  text-shadow: 1px 1px 0px #000000;
+  line-height: 1.3;
+}
+
+.minecraft-achievement-rarity {
+  color: #FFD700;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 0px #000000;
+  margin-top: 4px;
 }
 
 /* RPG Character Sheet Sections */
@@ -369,15 +609,17 @@ body {
     rgba(0, 255, 127, 0.2) 100%);
   border: 1px solid rgba(50, 205, 50, 0.4);
   border-radius: 8px;
-  padding: 8px 12px;
+  padding: 6px 10px;
   text-align: center;
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   font-weight: 600;
   color: #ffffff;
   text-shadow: 0 0 10px rgba(50, 205, 50, 0.5);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .skill-badge::before {
@@ -430,3 +672,72 @@ body {
     left 8px top 8px;
   border-radius: 1.25rem;
 }
+
+/* ---- Minecraft Wooden Sign (Connect With Me) ---- */
+.minecraft-sign {
+  position: relative;
+  margin: 24px auto 86px;
+  width: min(400px, 88vw);
+  padding: 18px 18px 26px; /* shorter sign: reduce vertical padding */
+  /* wood texture: base gradient + subtle horizontal grain */
+  background:
+    linear-gradient(180deg, #a7773b, #8f5f2c),
+    repeating-linear-gradient(0deg, transparent 0 6px, rgba(0,0,0,0.08) 6px 7px, transparent 7px 14px);
+  border: 3px solid #3b2a12; /* dark pixel border */
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,0.06), inset 0 0 0 4px rgba(0,0,0,0.2), 0 2px 0 rgba(0,0,0,0.3);
+  image-rendering: pixelated;
+  text-align: center;
+}
+.minecraft-sign::after { /* wooden post */
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -50px;
+  width: 18px;
+  height: 50px;
+  background: linear-gradient(180deg, #7a5528, #5f411f);
+  box-shadow: inset 0 0 0 2px rgba(0,0,0,0.25);
+}
+.minecraft-sign-title {
+  margin: 2px 0 12px; /* tighten title spacing */
+  font-family: var(--font-minecraft, 'Press Start 2P'), monospace;
+  font-size: clamp(14px, 2.4vw, 18px);
+  color: #1c1208; /* dark ink on wood */
+  text-shadow: 1px 1px 0 rgba(255,255,255,0.25);
+}
+.minecraft-sign-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px 28px;
+  flex-wrap: wrap;
+}
+.minecraft-sign-link {
+  font-family: var(--font-minecraft, 'Press Start 2P'), monospace;
+  font-size: clamp(12px, 2vw, 14px);
+  color: #1c1208;
+  text-decoration: none;
+  text-shadow: 1px 1px 0 rgba(255,255,255,0.2);
+  line-height: 1.2;
+  padding: 4px 2px;
+  transition: color 80ms linear, transform 80ms linear;
+}
+.minecraft-sign-chip {
+  padding: 6px 10px;
+  border: 2px solid; /* subtle bevel like Minecraft buttons but lighter */
+  border-color: #ffffff #6b573f #6b573f #ffffff;
+  background: linear-gradient(180deg, rgba(255,255,255,0.15), rgba(0,0,0,0.06));
+  box-shadow: 0 1px 0 rgba(0,0,0,0.25);
+}
+.minecraft-sign-link:hover { color: #3a2a17; transform: translateY(-1px); }
+.minecraft-sign-link:active { color: #000000; transform: translateY(1px); }
+
+.minecraft-sign-info {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.minecraft-sign-sep { color: #3a2a17; opacity: .6; }
