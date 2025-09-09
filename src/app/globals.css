@@ -1,21 +1,42 @@
 @import "tailwindcss";
 
-/* Design tokens */
+/* RPG Character Sheet Design Tokens */
 :root {
-  /* Base */
-  --background: #0c0a09; /* warmer dark */
-  --foreground: #f3efe9; /* warm light */
-  --muted: #b9b1a7; /* warm muted */
+  /* Base Colors */
+  --background: #0f1419; /* rich dark forest */
+  --background-alt: #1a1a1a; /* deep charcoal gray */
+  --foreground: #ffffff; /* pure white */
+  --muted: #e0e0e0; /* light gray */
 
-  /* Worlds */
-  --hub-bg: #1b1320; /* warmer purple */
-  --hub-accent: #d4b253; /* softer gold */
-  --projects-bg: #0d1720; /* indigo-teal */
-  --projects-accent: #3b82f6; /* friendly blue */
-  --experience-bg: #121008; /* earthen */
-  --experience-accent: #7acb73; /* grass green */
-  --interests-bg: #12140c; /* forest */
-  --interests-accent: #c08a4a; /* wood */
+  /* RPG Theme Colors */
+  --accent-primary: #32cd32; /* electric lime green */
+  --accent-secondary: #00ff7f; /* vibrant emerald */
+  --highlight: #ffd700; /* golden yellow */
+  --border: #1f4f1f; /* darker green for borders */
+  --border-glow: rgba(50, 205, 50, 0.3); /* glowing border effect */
+  
+  /* Text Colors */
+  --text-primary: #ffffff;
+  --text-secondary: #32cd32;
+  --text-accent: #ffd700;
+  --text-muted: #e0e0e0;
+  --text-glow: rgba(50, 205, 50, 0.8);
+
+  /* Character Sheet Colors */
+  --stat-bg: #1a1a1a;
+  --stat-border: #32cd32;
+  --achievement-bg: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+  --achievement-border: #ffd700;
+  --progress-bg: #333333;
+  --progress-fill: linear-gradient(90deg, #32cd32, #00ff7f);
+
+  /* Worlds (keeping for other pages) */
+  --projects-bg: #0d1720;
+  --projects-accent: #3b82f6;
+  --experience-bg: #121008;
+  --experience-accent: #7acb73;
+  --interests-bg: #12140c;
+  --interests-accent: #c08a4a;
 }
 
 @theme inline {
@@ -23,8 +44,25 @@
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
 
-  --color-hub: var(--hub-bg);
-  --color-hub-accent: var(--hub-accent);
+  --color-accent-primary: var(--accent-primary);
+  --color-accent-secondary: var(--accent-secondary);
+  --color-highlight: var(--highlight);
+  --color-border: var(--border);
+  --color-border-glow: var(--border-glow);
+  
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-accent: var(--text-accent);
+  --color-text-muted: var(--text-muted);
+  --color-text-glow: var(--text-glow);
+
+  --color-stat-bg: var(--stat-bg);
+  --color-stat-border: var(--stat-border);
+  --color-achievement-bg: var(--achievement-bg);
+  --color-achievement-border: var(--achievement-border);
+  --color-progress-bg: var(--progress-bg);
+  --color-progress-fill: var(--progress-fill);
+
   --color-projects: var(--projects-bg);
   --color-projects-accent: var(--projects-accent);
   --color-experience: var(--experience-bg);
@@ -32,8 +70,8 @@
   --color-interests: var(--interests-bg);
   --color-interests-accent: var(--interests-accent);
 
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-vt323);
+  --font-body: var(--font-orbitron);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -48,12 +86,15 @@ html, body {
 }
 
 body {
-  /* Warm vignette + subtle noise */
+  /* RPG Character Sheet Background */
   background:
-    radial-gradient(1200px 800px at 50% -10%, color(display-p3 0.22 0.16 0.12) 0%, transparent 55%),
-    radial-gradient(1400px 900px at 50% 120%, color(display-p3 0.24 0.18 0.12 / 0.6) 0%, transparent 60%),
-    linear-gradient(var(--background), var(--background));
+    radial-gradient(1200px 800px at 50% -10%, rgba(50, 205, 50, 0.1) 0%, transparent 55%),
+    radial-gradient(1400px 900px at 50% 120%, rgba(255, 215, 0, 0.08) 0%, transparent 60%),
+    radial-gradient(800px 600px at 20% 80%, rgba(0, 255, 127, 0.05) 0%, transparent 50%),
+    linear-gradient(135deg, #0f1419 0%, #1a1a1a 50%, #0f1419 100%);
   color: var(--foreground);
+  font-family: var(--font-orbitron), sans-serif;
+  min-height: 100vh;
 }
 
 /* Subtle particles placeholder */
@@ -71,11 +112,23 @@ body {
 }
 
 .hud {
-  @apply sticky top-0 z-40 w-full border-b border-white/10 bg-[color-mix(in_oklab,var(--background)_80%,black_20%)]/70 backdrop-blur-md;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  width: 100%;
+  border-bottom: 2px solid rgba(50, 205, 50, 0.4);
+  background: linear-gradient(135deg, 
+    rgba(15, 20, 25, 0.95) 0%, 
+    rgba(26, 26, 26, 0.9) 100%);
+  backdrop-filter: blur(20px);
+  box-shadow: 
+    0 0 30px rgba(50, 205, 50, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .nav-link {
-  @apply text-sm font-medium text-white/80 hover:text-white transition-colors;
+  @apply text-sm font-medium text-text-primary/80 hover:text-text-primary transition-colors;
+  font-family: var(--font-body);
 }
 
 /* Minecraft subtle pixel background helper */
@@ -84,6 +137,274 @@ body {
     linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
   background-size: 16px 16px, 16px 16px;
+}
+
+/* RPG Character Sheet Typography */
+.character-name {
+  font-family: var(--font-vt323), monospace;
+  font-size: 3.5rem;
+  font-weight: 400;
+  text-shadow: 
+    3px 3px 0px #32cd32,
+    6px 6px 0px rgba(50, 205, 50, 0.4),
+    0 0 20px rgba(50, 205, 50, 0.6);
+  background: linear-gradient(45deg, #ffffff, #32cd32);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.section-header {
+  font-family: var(--font-vt323), monospace;
+  font-size: 2rem;
+  font-weight: 400;
+  color: #ffd700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-bottom: 2px solid #32cd32;
+  padding-bottom: 0.5rem;
+  text-shadow: 
+    2px 2px 0px #32cd32,
+    0 0 15px rgba(50, 205, 50, 0.5);
+}
+
+.character-class {
+  font-family: var(--font-orbitron), sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #32cd32;
+  text-shadow: 0 0 10px rgba(50, 205, 50, 0.8);
+  letter-spacing: 1px;
+}
+
+.text-rpg-body {
+  font-family: var(--font-orbitron), sans-serif;
+  font-weight: 400;
+  color: #ffffff;
+  line-height: 1.6;
+}
+
+.text-rpg-accent {
+  color: #32cd32;
+  text-shadow: 0 0 15px rgba(50, 205, 50, 0.8);
+  font-weight: 600;
+}
+
+.text-rpg-highlight {
+  color: #ffd700;
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+  font-weight: 600;
+}
+
+/* RPG Character Sheet Sections */
+.character-sheet {
+  background: linear-gradient(135deg, 
+    rgba(26, 26, 26, 0.95) 0%, 
+    rgba(31, 79, 31, 0.1) 50%, 
+    rgba(26, 26, 26, 0.95) 100%);
+  border: 2px solid #32cd32;
+  border-radius: 12px;
+  box-shadow: 
+    inset 0 0 0 1px rgba(50, 205, 50, 0.3),
+    0 0 40px rgba(50, 205, 50, 0.2),
+    0 8px 32px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.character-sheet::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    #32cd32 50%, 
+    transparent 100%);
+  opacity: 0.8;
+}
+
+.character-sheet:hover {
+  border-color: #32cd32;
+  box-shadow: 
+    inset 0 0 0 1px rgba(50, 205, 50, 0.5),
+    0 0 60px rgba(50, 205, 50, 0.4),
+    0 12px 40px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(255, 255, 255, 0.2);
+  transform: translateY(-4px) scale(1.02);
+}
+
+.character-sheet:hover::before {
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    #ffd700 50%, 
+    transparent 100%);
+  opacity: 1;
+}
+
+/* RPG Progress Bars */
+.skill-bar {
+  background: #333333;
+  border: 2px solid #32cd32;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  height: 24px;
+  margin: 8px 0;
+}
+
+.skill-progress {
+  background: linear-gradient(90deg, #32cd32, #00ff7f);
+  height: 100%;
+  animation: fillBar 2s ease-out;
+  box-shadow: 0 0 10px rgba(50, 205, 50, 0.5);
+  position: relative;
+}
+
+.skill-progress::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.3) 50%, 
+    transparent 100%);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes fillBar {
+  from { width: 0%; }
+  to { width: var(--progress-width); }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Achievement Badges */
+.achievement-badge {
+  border: 2px solid #ffd700;
+  background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+  padding: 16px;
+  margin: 12px 0;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.achievement-badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 215, 0, 0.1) 50%, 
+    transparent 100%);
+  transition: left 0.6s ease;
+}
+
+.achievement-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
+}
+
+.achievement-badge:hover::before {
+  left: 100%;
+}
+
+.achievement-title {
+  color: #ffd700;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+}
+
+.achievement-description {
+  color: #e0e0e0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* Character Stats */
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(50, 205, 50, 0.2);
+}
+
+.stat-label {
+  color: #32cd32;
+  font-weight: 600;
+  text-shadow: 0 0 5px rgba(50, 205, 50, 0.5);
+}
+
+.stat-value {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+/* Skill badges */
+.skill-badge {
+  background: linear-gradient(135deg, 
+    rgba(50, 205, 50, 0.2) 0%, 
+    rgba(0, 255, 127, 0.2) 100%);
+  border: 1px solid rgba(50, 205, 50, 0.4);
+  border-radius: 8px;
+  padding: 8px 12px;
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(50, 205, 50, 0.5);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.2) 50%, 
+    transparent 100%);
+  transition: left 0.5s ease;
+}
+
+.skill-badge:hover {
+  border-color: #32cd32;
+  box-shadow: 
+    0 0 20px rgba(50, 205, 50, 0.4),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px) scale(1.05);
+  color: #32cd32;
+}
+
+.skill-badge:hover::before {
+  left: 100%;
 }
 
 /* Minecraft blocky terrain (grass top + dirt grid) */
