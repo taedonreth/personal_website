@@ -8,12 +8,41 @@ import { Github, Linkedin, Mail, Phone, Star, Zap, GraduationCap } from "lucide-
 export default function Home() {
   const { play } = useSound();
   
-  const skills = [
-    "Python", "JavaScript", "TypeScript", "C++", "Java", "CSS", "HTML", "SQL",
-    "React", "Next.js", "FastAPI", "Node.js", "Express", "Tailwind CSS",
-    "Spark", "Airflow", "Git", "PostgreSQL", "MongoDB", "Firebase", "MySQL",
-    "Microsoft SQL Server", "AWS", "Azure", "Snowflake", "Docker"
-  ];
+  const skillsData = [
+    // Languages
+    { name: "Python", tier: "advanced", context: "3+ years", category: "Languages" },
+    { name: "JS/TS", tier: "Beginner", context: "Frontend + Node", category: "Languages" },
+    { name: "C++", tier: "intermediate", context: "Coursework/Projects", category: "Languages" },
+    { name: "SQL", tier: "advanced", context: "Postgres/MySQL/MSSQL", category: "Languages" },
+    { name: "HTML/CSS", tier: "intermediate", context: "Semantic UI", category: "Languages" },
+
+    // Frameworks & Libraries
+    { name: "React", tier: "intermediate", context: "Multiple projects", category: "Frameworks" },
+    { name: "Next.js", tier: "intermediate", context: "App Router", category: "Frameworks" },
+    { name: "FastAPI", tier: "intermediate", context: "ML/Services", category: "Frameworks" },
+
+    // Backend & Infra
+    { name: "Node.js", tier: "intermediate", context: "Services/Workers", category: "Backend/Infra" },
+    { name: "Docker", tier: "beginner", context: "Dev/Deploy", category: "Backend/Infra" },
+    { name: "AWS", tier: "beginner", context: "Infra", category: "Backend/Infra" },
+    { name: "GCP", tier: "beginner", context: "Cloud", category: "Backend/Infra" },
+    { name: "Git", tier: "advanced", context: "Daily driver", category: "Backend/Infra" },
+
+    // Data Platforms
+    { name: "Spark", tier: "intermediate", context: "Data processing", category: "Data" },
+    { name: "Databricks", tier: "beginner", context: "Warehouse", category: "Data" },
+    { name: "PostgreSQL", tier: "intermediate", context: "Prod usage", category: "Data" }
+  ] as const;
+
+  const categoryOrder = ["Languages", "Frameworks", "Data", "Backend/Infra"] as const;
+  const orderedSkills = skillsData
+    .slice()
+    .sort((a, b) => categoryOrder.indexOf(a.category as any) - categoryOrder.indexOf(b.category as any));
+  const columns = 4;
+  const rows = 4;
+  const totalSlots = rows * columns; // 16 slots
+  const limitedSkills = orderedSkills.slice(0, totalSlots);
+  const paddedSkills = Array.from({ length: totalSlots }, (_, i) => limitedSkills[i] || null);
 
   const skillTrees = [
     { name: "Backend Development", level: 90 },
@@ -58,7 +87,7 @@ export default function Home() {
         <header className="minecraft-header">
           <div className="minecraft-title">
             <h1>TAEDON RETH</h1>
-            <p className="subtitle">Full-Stack Developer</p>
+            <p className="subtitle">Software Engineer</p>
           </div>
         </header>
 
@@ -86,9 +115,9 @@ export default function Home() {
               Contact
             </button>
             
-            <button className="minecraft-menu-btn small" onClick={() => window.open('/resume.pdf', '_blank')}>
+            <a className="minecraft-menu-btn small" href="/resume.pdf" download="Taedon_Reth_Resume.pdf">
               Resume
-            </button>
+            </a>
           </div>
 
         </div>
@@ -108,15 +137,14 @@ export default function Home() {
                 <Image src="/avatar.png" alt="Taedon Reth" width={64} height={64} className="mx-auto mb-4 pixelated" style={{imageRendering: 'pixelated'}} />
                 <div className="minecraft-text text-lg font-bold">TAEDON RETH</div>
                 <div className="minecraft-text">Level 26 Developer</div>
-                <div className="minecraft-text">Class: Full-Stack Engineer</div>
-                <div className="minecraft-text">Location: UC Santa Barbara</div>
+                <div className="minecraft-text">Class: Software Engineer</div>
+                <div className="minecraft-text">Location: Bay Area </div>
               </div>
               <div>
-                <div className="minecraft-text font-bold mb-2">BIO:</div>
-                <div className="minecraft-text mb-4">"4th year CS major leveraging data and technology to solve real-world challenges. Focused on backend, data platforms, and AI systems."</div>
+                <div className="minecraft-text mb-4 text-center">"4th year CS major leveraging data and technology to solve real-world challenges. Focused on backend, data platforms, and AI systems."</div>
                 <div className="minecraft-text font-bold mb-2">CURRENT QUEST:</div>
-                <div className="minecraft-text mb-2">"Building Scalable Systems"</div>
-                <div className="minecraft-text font-bold mb-2">GUILD: "UCSB"</div>
+                <div className="minecraft-text mb-2">"Optimization and Scalability"</div>
+                <div className="minecraft-text font-bold mb-2">GUILD: UCSB</div>
               </div>
             </div>
           </motion.div>
@@ -126,21 +154,35 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="minecraft-panel"
+            className="minecraft-panel mc-inventory-panel"
           >
-            <div className="minecraft-panel-title">TECHNICAL ARSENAL</div>
-            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2">
-              {skills.map((skill, index) => (
-                <motion.div
-                  key={skill}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, delay: 0.8 + index * 0.02 }}
-                  className="minecraft-text text-center text-[11px] p-2 bg-gray-600 border border-gray-400 hover:bg-gray-500 transition-colors cursor-pointer"
-                >
-                  {skill}
-                </motion.div>
-              ))}
+            <div className="minecraft-panel-title">TECHNICAL INVENTORY</div>
+            <div className="mc-chest">
+              <div className="mc-chest-grid" style={{ gridTemplateColumns: `repeat(${columns}, 1fr)` }}>
+                {paddedSkills.map((skill, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.2, delay: 0.4 + (index % columns) * 0.03 }}
+                    className={`mc-slot ${skill ? `mc-slot--tier-${skill.tier}` : 'mc-slot--empty'}`}
+                  >
+                    {skill && (
+                      <>
+                        <div className="mc-slot-label">{skill.name}</div>
+                        <div className="mc-tooltip">
+                          {`${skill.name} • ${skill.tier[0].toUpperCase()}${skill.tier.slice(1)} • ${skill.context}`}
+                        </div>
+                      </>
+                    )}
+                  </motion.div>
+                ))}
+              </div>
+              <div className="mc-chest-legend">
+                <span className="legend-item legend-beginner">Beginner</span>
+                <span className="legend-item legend-intermediate">Intermediate</span>
+                <span className="legend-item legend-advanced">Advanced</span>
+              </div>
             </div>
           </motion.div>
         </section>

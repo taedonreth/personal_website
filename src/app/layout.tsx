@@ -42,7 +42,7 @@ export default function RootLayout({
                   <div className="h-full bg-green-500" style={{width: '85%'}} />
                 </div>
               </div>
-              <span className="minecraft-text whitespace-nowrap max-w-[36ch] overflow-hidden text-ellipsis">Quest: <strong className="text-yellow-400">Machine Learning</strong></span>
+              <span className="minecraft-text whitespace-nowrap max-w-[36ch] overflow-hidden text-ellipsis">Quest: <strong className="text-yellow-400">Autonomous Vehicle</strong></span>
               <span className="minecraft-text whitespace-nowrap">Guild: <strong className="text-yellow-400">UCSB</strong></span>
             </div>
             <nav className="flex items-center gap-4">
