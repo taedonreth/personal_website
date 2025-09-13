@@ -1,56 +1,203 @@
 "use client";
 
-import CardFrame from "@/components/CardFrame";
-import StatBar from "@/components/StatBar";
+import { motion } from "framer-motion";
 import { useState } from "react";
-import { Swords } from "lucide-react";
 import { useSound } from "@/providers/SoundProvider";
 
-function Modal({ open, onClose, title }: { open: boolean; onClose: () => void; title: string }) {
-  if (!open) return null;
-  return (
-    <div className="fixed inset-0 z-50 grid place-items-center bg-black/70 backdrop-blur-sm">
-      <div className="w-full max-w-2xl rounded-xl overflow-hidden ring-1 ring-white/10 bg-[rgba(15,18,26,0.95)]">
-        <div className="h-40 bg-gradient-to-r from-indigo-500/40 to-purple-500/30" />
-        <div className="p-5">
-          <div className="text-xl font-semibold mb-2">{title}</div>
-          <p className="text-white/70 text-sm mb-4">LoL-style inspect modal. Drop a banner into public/banners/ and we can render it above.</p>
-          <div className="flex justify-end">
-            <button onClick={onClose} className="rounded px-3 py-1.5 bg-white/10 hover:bg-white/15 ring-1 ring-white/20">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+interface Project {
+  id: string;
+  icon: string;
+  title: string;
+  techStack: string;
+  dates: string;
+  rarity: string;
+  description: string;
+  details: string[];
+  githubUrl: string;
 }
 
+
 export default function ProjectsPage() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
   const { play } = useSound();
+
+  const projects: Project[] = [
+    {
+      id: "gaucho-graduate",
+      icon: "🎓",
+      title: "GAUCHO GRADUATE",
+      techStack: "React, Next.js, TypeScript, Node.js, Prisma ORM, PostgreSQL",
+      dates: "",
+      rarity: "[LEGENDARY]",
+      description: "Full-stack course planning app with automated catalog processing, drag-and-drop scheduling, and OAuth integration for UCSB students.",
+      details: [],
+      githubUrl: "https://github.com/ucsb-cs148-w25/pj03-gauchograduate"
+    },
+    {
+      id: "traveler",
+      icon: "✈️",
+      title: "TRAVELER",
+      techStack: "React, JavaScript, Node.js, OpenAI API, OpenWeather API",
+      dates: "",
+      rarity: "[EPIC]",
+      description: "AI-powered travel planning web app with drag-and-drop itinerary building, real-time weather integration, and intelligent travel recommendations.",
+      details: [],
+      githubUrl: "https://github.com/taedonreth/Traveler"
+    },
+    {
+      id: "digit-recognition",
+      icon: "🧠",
+      title: "DIGIT RECOGNITION",
+      techStack: "Python, NumPy, Matplotlib, Jupyter Notebook",
+      dates: "",
+      rarity: "[RARE]",
+      description: "Neural network built from scratch using Python for handwritten digit recognition, achieving 82% accuracy on MNIST dataset with data preprocessing and visualization.",
+      details: [],
+      githubUrl: "https://github.com/taedonreth/Digit-Recognition"
+    }
+  ];
+
+
   return (
-    <div className="mx-auto max-w-6xl px-6 py-12">
-      <h1 className="text-2xl font-semibold mb-6 flex items-center gap-2"><Swords size={18}/> Projects</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {Array.from({ length: 6 }).map((_, i) => (
-          <CardFrame key={i} rarity={i % 3 === 0 ? "legendary" : i % 2 === 0 ? "epic" : "rare"} className="card p-5 bg-gradient-to-b from-projects/10 to-transparent">
-            <div className="flex items-center justify-between mb-1">
-              <div className="text-white font-medium">Project {i + 1}</div>
-              <button
-                className="text-xs rounded px-2 py-1 bg-white/10 hover:bg-white/15 ring-1 ring-white/20"
-                onMouseEnter={() => play("hover")}
-                onClick={() => { play("click"); setOpenIndex(i); }}
-              >Inspect</button>
+    <div className="mx-auto max-w-[90rem] px-6 py-12">
+      {/* Header Section */}
+      <div className="text-center mb-12">
+        <h1 className="minecraft-title text-4xl mb-4">PROJECT ARSENAL</h1>
+      </div>
+
+      {/* Projects Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 mb-16">
+        {projects.map((project, index) => (
+          <motion.div
+            key={project.id}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: index * 0.2 }}
+            className="group"
+          >
+            {/* Project Card */}
+            <div className="minecraft-panel h-full hover:scale-102 transition-all duration-200 hover:shadow-lg hover:shadow-yellow-500/10">
+              {/* Project Header */}
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-3">
+                  <span className="text-3xl">{project.icon}</span>
+                  <div>
+                    <div className="minecraft-achievement-title text-lg">{project.title}</div>
+                    <div className="minecraft-achievement-rarity text-sm">{project.rarity}</div>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <div className="text-xs minecraft-text text-yellow-400">{project.dates}</div>
+                </div>
+              </div>
+
+              {/* Tech Stack */}
+              <div className="mb-4">
+                <div className="minecraft-text text-sm font-semibold text-yellow-400 mb-2">
+                  TECH STACK:
+                </div>
+                <div className="minecraft-text text-sm text-gray-300">
+                  {project.techStack}
+                </div>
+              </div>
+
+              {/* Project Description */}
+              <div className="minecraft-achievement-description mb-6 text-sm leading-relaxed">
+                {project.description} {project.details.join(' ')}
+              </div>
+
+              {/* GitHub Button */}
+              <div className="text-center">
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="minecraft-menu-btn small inline-block"
+                  onMouseEnter={() => play("hover")}
+                  onClick={() => play("click")}
+                >
+                  View on GitHub
+                </a>
+              </div>
             </div>
-            <div className="text-white/70 text-sm mb-3">Champion card styling placeholder</div>
-            <div className="space-y-2">
-              <StatBar label="Performance" value={80 - (i % 3) * 10} />
-              <StatBar label="DX" value={70 + (i % 4) * 5} />
-              <StatBar label="Stability" value={60 + (i % 5) * 6} />
-            </div>
-          </CardFrame>
+          </motion.div>
         ))}
       </div>
-      <Modal open={openIndex !== null} onClose={() => setOpenIndex(null)} title={openIndex !== null ? `Project ${openIndex + 1}` : ""} />
+
+      {/* Stats Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.8 }}
+        className="mt-32 minecraft-panel"
+      >
+        <div className="minecraft-panel-title mb-6">DEVELOPMENT STATS</div>
+        <div className="space-y-6">
+          {/* Frontend Skills */}
+          <div className="space-y-2">
+            <div className="flex justify-between items-center">
+              <span className="minecraft-text text-sm font-semibold text-yellow-400">FRONTEND</span>
+              <span className="minecraft-text text-sm text-gray-300">40%</span>
+            </div>
+            <div className="minecraft-progress">
+              <motion.div 
+                className="minecraft-progress-fill"
+                initial={{ width: 0 }}
+                animate={{ width: '40%' }}
+                transition={{ duration: 1.5, delay: 1.0 }}
+              />
+            </div>
+          </div>
+
+          {/* Backend Skills */}
+          <div className="space-y-2">
+            <div className="flex justify-between items-center">
+              <span className="minecraft-text text-sm font-semibold text-yellow-400">BACKEND</span>
+              <span className="minecraft-text text-sm text-gray-300">60%</span>
+            </div>
+            <div className="minecraft-progress">
+              <motion.div 
+                className="minecraft-progress-fill"
+                initial={{ width: 0 }}
+                animate={{ width: '60%' }}
+                transition={{ duration: 1.5, delay: 1.2 }}
+              />
+            </div>
+          </div>
+
+          {/* Databases Skills */}
+          <div className="space-y-2">
+            <div className="flex justify-between items-center">
+              <span className="minecraft-text text-sm font-semibold text-yellow-400">DATABASES</span>
+              <span className="minecraft-text text-sm text-gray-300">55%</span>
+            </div>
+            <div className="minecraft-progress">
+              <motion.div 
+                className="minecraft-progress-fill"
+                initial={{ width: 0 }}
+                animate={{ width: '55%' }}
+                transition={{ duration: 1.5, delay: 1.4 }}
+              />
+            </div>
+          </div>
+
+          {/* Deployment/Production Skills */}
+          <div className="space-y-2">
+            <div className="flex justify-between items-center">
+              <span className="minecraft-text text-sm font-semibold text-yellow-400">DEPLOYMENT/PRODUCTION</span>
+              <span className="minecraft-text text-sm text-gray-300">50%</span>
+            </div>
+            <div className="minecraft-progress">
+              <motion.div 
+                className="minecraft-progress-fill"
+                initial={{ width: 0 }}
+                animate={{ width: '50%' }}
+                transition={{ duration: 1.5, delay: 1.6 }}
+              />
+            </div>
+          </div>
+        </div>
+      </motion.div>
+
     </div>
   );
 }
