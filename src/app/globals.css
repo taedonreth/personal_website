@@ -358,7 +358,6 @@ body {
   border-color: #FFFFFF #000000 #000000 #FFFFFF;
   padding: 20px;
   margin: 20px auto;
-  max-width: 600px;
   position: relative;
 }
 
@@ -419,20 +418,20 @@ body {
 .mc-slot--tier-intermediate {
   box-shadow:
     inset 0 0 0 2px rgba(0,0,0,0.42),
-    0 0 8px 1px rgba(100, 180, 255, 0.34),
-    0 0 16px 4px rgba(100, 180, 255, 0.22);
+    0 0 12px 2px rgba(100, 180, 255, 0.40),
+    0 0 24px 6px rgba(100, 180, 255, 0.28);
 }
 .mc-slot--tier-advanced {
   box-shadow:
     inset 0 0 0 2px rgba(0,0,0,0.42),
-    0 0 10px 1px rgba(180, 100, 255, 0.46),
-    0 0 20px 5px rgba(180, 100, 255, 0.27);
+    0 0 14px 2px rgba(180, 100, 255, 0.52),
+    0 0 28px 7px rgba(180, 100, 255, 0.33);
 }
 .mc-slot--tier-expert {
   box-shadow:
     inset 0 0 0 2px rgba(0,0,0,0.42),
-    0 0 12px 2px rgba(255, 215, 80, 0.50),
-    0 0 22px 6px rgba(255, 215, 80, 0.30);
+    0 0 16px 3px rgba(255, 215, 80, 0.56),
+    0 0 30px 8px rgba(255, 215, 80, 0.36);
 }
 
 /* Tooltip */
@@ -492,6 +491,11 @@ body {
   bottom: 0;
   border: 1px solid #8B8B8B;
   pointer-events: none;
+}
+
+/* Override for modal to remove the problematic border */
+.minecraft-modal::before {
+  display: none;
 }
 
 /* Minecraft Progress Bar */

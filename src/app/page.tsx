@@ -44,41 +44,6 @@ export default function Home() {
   const limitedSkills = orderedSkills.slice(0, totalSlots);
   const paddedSkills = Array.from({ length: totalSlots }, (_, i) => limitedSkills[i] || null);
 
-  const skillTrees = [
-    { name: "Backend Development", level: 90 },
-    { name: "Data Platforms", level: 85 },
-    { name: "AI/ML Systems", level: 75 },
-    { name: "Infrastructure", level: 88 },
-    { name: "Problem Solving", level: 95 }
-  ];
-
-  const achievements = [
-    {
-      icon: "🏆",
-      title: "AMD INTERNSHIP COMPLETE",
-      description: "Master of Infrastructure Optimization",
-      rarity: "[RARE]"
-    },
-    {
-      icon: "⚡",
-      title: "TESLA DATA PLATFORM HERO",
-      description: "Shipped optimization across platforms",
-      rarity: "[EPIC]"
-    },
-    {
-      icon: "🧬",
-      title: "GENENTECH BACKEND MASTER",
-      description: "Built robust backend systems",
-      rarity: "[LEGENDARY]"
-    },
-    {
-      icon: "🎓",
-      title: "UCSB CS DEGREE",
-      description: "Academic Excellence Achievement",
-      rarity: "[IN PROGRESS]"
-    }
-  ];
-
   return (
     <div className="min-h-screen overflow-hidden">
       <div className="relative mx-auto max-w-6xl px-6 py-16">
@@ -87,7 +52,7 @@ export default function Home() {
         <header className="minecraft-header">
           <div className="minecraft-title">
             <h1>TAEDON RETH</h1>
-            <p className="subtitle">Software Engineer</p>
+            <p className="subtitle">Software Engineer!</p>
           </div>
         </header>
 
@@ -141,7 +106,7 @@ export default function Home() {
                 <div className="minecraft-text">Location: Bay Area </div>
               </div>
               <div>
-                <div className="minecraft-text mb-4 text-center">"4th year CS major leveraging data and technology to solve real-world challenges. Focused on backend, data platforms, and AI systems."</div>
+                <div className="minecraft-text mb-4 text-center">"4th year CS major who loves to explore new technology and build meaningful applications."</div>
                 <div className="minecraft-text font-bold mb-2">CURRENT QUEST:</div>
                 <div className="minecraft-text mb-2">"Optimization and Scalability"</div>
                 <div className="minecraft-text font-bold mb-2">GUILD: UCSB</div>
