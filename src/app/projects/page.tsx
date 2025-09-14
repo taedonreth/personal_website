@@ -38,10 +38,21 @@ export default function ProjectsPage() {
       title: "TRAVELER",
       techStack: "React, JavaScript, Node.js, OpenAI API, OpenWeather API",
       dates: "",
-      rarity: "[EPIC]",
+      rarity: "[RARE]",
       description: "AI-powered travel planning web app with drag-and-drop itinerary building, real-time weather integration, and intelligent travel recommendations.",
       details: [],
       githubUrl: "https://github.com/taedonreth/Traveler"
+    },
+    {
+      id: "personal-website",
+      icon: "🌐",
+      title: "PERSONAL WEBSITE",
+      techStack: "Next.js, React, TypeScript, Tailwind CSS, Framer Motion",
+      dates: "",
+      rarity: "[RARE]",
+      description: "Personal website displaying my past and current experiences and projects including personal thoughts about my journey to becoming the best engineer possible.",
+      details: [],
+      githubUrl: "https://github.com/taedonreth/personal_website"
     },
     {
       id: "digit-recognition",

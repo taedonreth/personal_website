@@ -189,6 +189,11 @@ body {
 .c6 { top: 36vh; transform: scale(1.05) scaleX(-1); animation-duration: 88s; opacity: .8; }
 @keyframes cloud-drift { 0%{transform:translateX(-30vw) scale(1)} 100%{transform:translateX(130vw) scale(1)} }
 
+/* Hide clouds on newsletter post pages for better text readability */
+body.no-clouds .cloud {
+  display: none;
+}
+
 /* Night Mode */
 @media (prefers-color-scheme: dark) {
   :root { --sky-bg: linear-gradient(180deg, #0a0d1a 0%, #0a1326 60%, #0a1a33 100%); }

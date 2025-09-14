@@ -30,7 +30,7 @@ export default function ExperiencePage() {
       location: "Foster City, CA",
       dates: "June 2025 – Present",
       rarity: "[LEGENDARY]",
-      description: "Autonomous Vehicle Development",
+      description: "Testing and Integration Pipelines",
       details: [
         "Engineered a unified, Python-based workflow that automates master health validation, saving 12 hours of manual effort weekly. Managing automated test execution, triaging failures, and reverting PRs that introduce regressions in real-time.",
         "Overhauled the CI pipeline by eliminating low-value tests while optimizing coverage, which cut PR validation time by 60% and significantly increased code throughput."

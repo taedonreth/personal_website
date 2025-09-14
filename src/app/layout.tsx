@@ -49,7 +49,6 @@ export default function RootLayout({
               <Link href="/" className="nav-link hover:text-yellow-400 transition-colors"><Home size={12}/> Hub</Link>
               <Link href="/experience" className="nav-link hover:text-yellow-400 transition-colors"><Shield size={12}/> Experience</Link>
               <Link href="/projects" className="nav-link hover:text-yellow-400 transition-colors"><Swords size={12}/> Projects</Link>
-              <Link href="/interests" className="nav-link hover:text-yellow-400 transition-colors"><Target size={12}/> Interests</Link>
               <Link href="/newsletter" className="nav-link hover:text-yellow-400 transition-colors"><Scroll size={12}/> Newsletter</Link>
             </nav>
           </div>

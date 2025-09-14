@@ -106,7 +106,7 @@ export default function Home() {
                 <div className="minecraft-text">Location: Bay Area </div>
               </div>
               <div>
-                <div className="minecraft-text mb-4 text-center">"4th year CS major who loves to explore new technology and build meaningful applications."</div>
+                <div className="minecraft-text mb-4 text-center">"4th year CS major who loves to explore new technology and build meaningful applications. When I'm not coding, I love to get outside, exercise, and try new foods."</div>
                 <div className="minecraft-text font-bold mb-2">CURRENT QUEST:</div>
                 <div className="minecraft-text mb-2">"Optimization and Scalability"</div>
                 <div className="minecraft-text font-bold mb-2">GUILD: UCSB</div>
