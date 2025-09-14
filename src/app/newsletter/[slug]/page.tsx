@@ -2,8 +2,9 @@ import Link from "next/link";
 import { getPostBySlug, getAllPostSlugs } from '@/lib/posts';
 import NewsletterPostClient from './NewsletterPostClient';
 
-export default async function NewsletterPostPage({ params }: { params: { slug: string } }) {
-  const post = await getPostBySlug(params.slug);
+export default async function NewsletterPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
 
   if (!post) {
     return (

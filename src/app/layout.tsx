@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Press_Start_2P, Orbitron } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
-import { Home, Swords, Shield, Target, Scroll } from "lucide-react";
+import { Home, Swords, Shield, Scroll } from "lucide-react";
 import SoundProvider from "@/providers/SoundProvider";
 import AudioToggle from "@/components/AudioToggle";
 
@@ -20,7 +20,7 @@ const orbitron = Orbitron({
 
 export const metadata: Metadata = {
   title: "Taedon Reth — Portfolio",
-  description: "Gaming-inspired portfolio showcasing projects, experience, and interests.",
+  description: "Gaming-inspired portfolio showcasing projects, experience, and newsletter.",
 };
 
 export default function RootLayout({

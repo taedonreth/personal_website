@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useSound } from "@/providers/SoundProvider";
-import { Github, Linkedin, Mail, Phone, Star, Zap, GraduationCap } from "lucide-react";
+// Removed unused imports
 
 export default function Home() {
   const { play } = useSound();
@@ -67,9 +67,6 @@ export default function Home() {
             Projects
           </button>
           
-          <button className="minecraft-menu-btn" onClick={() => window.location.href = '/interests'}>
-            Interests
-          </button>
 
           <button className="minecraft-menu-btn" onClick={() => window.location.href = '/newsletter'}>
             Newsletter
