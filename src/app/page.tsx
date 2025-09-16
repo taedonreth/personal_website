@@ -37,7 +37,7 @@ export default function Home() {
   const categoryOrder = ["Languages", "Frameworks", "Data", "Backend/Infra"] as const;
   const orderedSkills = skillsData
     .slice()
-    .sort((a, b) => categoryOrder.indexOf(a.category as any) - categoryOrder.indexOf(b.category as any));
+    .sort((a, b) => categoryOrder.indexOf(a.category as typeof categoryOrder[number]) - categoryOrder.indexOf(b.category as typeof categoryOrder[number]));
   const columns = 4;
   const rows = 4;
   const totalSlots = rows * columns; // 16 slots
@@ -103,9 +103,9 @@ export default function Home() {
                 <div className="minecraft-text">Location: Bay Area </div>
               </div>
               <div>
-                <div className="minecraft-text mb-4 text-center">"4th year CS major who loves to explore new technology and build meaningful applications. When I'm not coding, I love to get outside, exercise, and try new foods."</div>
+                <div className="minecraft-text mb-4 text-center">&ldquo;4th year CS major who loves to explore new technology and build meaningful applications. When I&apos;m not coding, I love to get outside, exercise, and try new foods.&rdquo;</div>
                 <div className="minecraft-text font-bold mb-2">CURRENT QUEST:</div>
-                <div className="minecraft-text mb-2">"Optimization and Scalability"</div>
+                <div className="minecraft-text mb-2">&ldquo;Optimization and Scalability&rdquo;</div>
                 <div className="minecraft-text font-bold mb-2">GUILD: UCSB</div>
               </div>
             </div>

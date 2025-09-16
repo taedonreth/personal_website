@@ -118,7 +118,7 @@ export default function ExperiencePage() {
                   <div className="text-gray-300">{experience.location}</div>
                 </div>
               </div>
-              <div className="minecraft-achievement-description mb-2">"{experience.description}"</div>
+              <div className="minecraft-achievement-description mb-2">&ldquo;{experience.description}&rdquo;</div>
               <div className="text-sm minecraft-text text-gray-300">
                 {experience.position}
               </div>
@@ -183,7 +183,7 @@ export default function ExperiencePage() {
 
             {/* Description */}
             <div className="minecraft-achievement-description mb-6">
-              "{selectedExperience.description}"
+              &ldquo;{selectedExperience.description}&rdquo;
             </div>
 
             {/* Details */}
