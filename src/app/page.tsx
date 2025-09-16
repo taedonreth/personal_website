@@ -29,7 +29,7 @@ export default function Home() {
     { name: "Git", tier: "advanced", context: "Daily driver", category: "Backend/Infra" },
 
     // Data Platforms
-    { name: "Spark", tier: "intermediate", context: "Data processing", category: "Data" },
+    { name: "R", tier: "intermediate", context: "Data processing", category: "Data" },
     { name: "Databricks", tier: "beginner", context: "Warehouse", category: "Data" },
     { name: "PostgreSQL", tier: "intermediate", context: "Prod usage", category: "Data" }
   ] as const;
