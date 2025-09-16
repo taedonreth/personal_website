@@ -214,12 +214,12 @@ body.no-clouds .cloud {
 
 .minecraft-title h1 {
   font-family: var(--font-minecraft), 'Press Start 2P', monospace;
-  font-size: clamp(36px, 6vw, 72px);
+  font-size: clamp(38px, 7vw, 76px);
   font-weight: 700;
   letter-spacing: 2px;
   margin: 0;
   line-height: 1.05;
-  color: #AAAAAA;
+  color: #eceaea;
   text-shadow:
     0 0 0 #000, /* force anti-alias outline */
     2px 2px 0 #000,
